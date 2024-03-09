@@ -1,11 +1,14 @@
 package pw3_ead;
 
 import jakarta.persistence.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "produtos")
+@Table(name = "alunos")
+@SpringBootApplication
 public class Aluno {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -71,5 +74,37 @@ public class Aluno {
 
     public void setNota3(BigDecimal nota3) {
         this.nota3 = nota3;
+    }
+
+    public static void main(String[] args){
+
+        SpringApplication.run(Aluno.class, args);
+
+        // Criando um objeto da Classe Produto:
+        Aluno a1 = new Aluno();
+        a1.setNome("Amanda");
+        a1.setEmail("amanda@gmail.com");
+        a1.setRa("1");
+        a1.setNota1(new BigDecimal(6.0));
+        a1.setNota2(new BigDecimal(7.0));
+        a1.setNota3(new BigDecimal(8.0));
+
+        // Criando uma factory de EntityManager:
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("cadastro_alunos");
+
+        // Usando a factory acima pra criar o objeto EntityManager:
+        EntityManager em = factory.createEntityManager();
+
+        // Iniciando uma transação:
+        em.getTransaction().begin();
+
+        // Gravando o objeto no banco de dados:
+        em.persist(a1);
+
+        // "Comitando" a transação:
+        em.getTransaction().commit();
+
+        // Fechando este EntityManager, já que não precisaremos mais dele:
+        em.close();
     }
 }
