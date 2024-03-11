@@ -20,18 +20,19 @@ public class Aluno {
     private BigDecimal nota3;
     private BigDecimal media;
     @ManyToOne
-    private Situacao status;
-    
+    private Situacao situacao;
 
-    public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3) {
+
+    public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3, BigDecimal media, Situacao situacao) {
         this.nome = nome;
         this.ra = ra;
         this.email = email;
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
+        this.media = media;
+        this.situacao = situacao;
     }
-
 
     public Aluno() {
 
@@ -87,29 +88,14 @@ public class Aluno {
 
     public void setNota3(BigDecimal nota3) {
         this.nota3 = nota3;
-        setMedia();
     }
 
     public BigDecimal getMedia() {
         return media;
     }
 
-    public void setMedia(){
-        BigDecimal soma = nota1.add(nota2).add(nota3);
-        BigDecimal quantidade = new BigDecimal("3");
-        this.media = soma.divide(quantidade, 2, BigDecimal.ROUND_HALF_UP); // Duas casas decimais
-    }
+    public void setMedia(BigDecimal media){ this.media = media;}
 
-    private void setStatus() {
-        String situacao;
-        if (media.compareTo(new BigDecimal("4")) < 0) {
-            this.status = new Situacao("REPROVADO");
-        } else if (media.compareTo(new BigDecimal("6")) < 0) {
-            this.status = new Situacao("RECUPERAÇÃO");
-        } else {
-            this.status = new Situacao("APROVADO");
-        }
-    }
 
     @Override
     public String toString() {
@@ -123,10 +109,6 @@ public class Aluno {
         SB.append("Notas: ");
         SB.append(nota1).append(" - ").append(nota2).append(" - ").append(nota3);
         SB.append("\n");
-        SB.append("Media: ").append(media);
-        SB.append("\n");
-        //SB.append("Situação: ").append(status.getNome());
-
         return SB.toString();
     }
 }
