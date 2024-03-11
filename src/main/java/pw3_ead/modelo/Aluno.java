@@ -30,8 +30,6 @@ public class Aluno {
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
-        this.setMedia();
-        this.setStatus();
     }
 
 
@@ -89,6 +87,7 @@ public class Aluno {
 
     public void setNota3(BigDecimal nota3) {
         this.nota3 = nota3;
+        setMedia();
     }
 
     public BigDecimal getMedia() {
@@ -98,8 +97,7 @@ public class Aluno {
     public void setMedia(){
         BigDecimal soma = nota1.add(nota2).add(nota3);
         BigDecimal quantidade = new BigDecimal("3");
-        BigDecimal media = soma.divide(quantidade, 2, BigDecimal.ROUND_HALF_UP); // Duas casas decimais
-        this.media = media;
+        this.media = soma.divide(quantidade, 2, BigDecimal.ROUND_HALF_UP); // Duas casas decimais
     }
 
     private void setStatus() {
@@ -127,7 +125,7 @@ public class Aluno {
         SB.append("\n");
         SB.append("Media: ").append(media);
         SB.append("\n");
-        SB.append("Situação: ").append(status.getNome());
+        //SB.append("Situação: ").append(status.getNome());
 
         return SB.toString();
     }
