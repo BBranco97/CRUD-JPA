@@ -19,6 +19,8 @@ public class Aluno {
     private BigDecimal nota2;
     private BigDecimal nota3;
 
+    public Aluno() {
+    }
 
     public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3) {
         this.nome = nome;
