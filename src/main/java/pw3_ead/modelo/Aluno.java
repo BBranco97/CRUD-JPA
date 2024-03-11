@@ -18,7 +18,11 @@ public class Aluno {
     private BigDecimal nota1;
     private BigDecimal nota2;
     private BigDecimal nota3;
-
+    private BigDecimal media;
+    @ManyToOne
+    private Situacao status;
+    
+    
     public Aluno() {
     }
 

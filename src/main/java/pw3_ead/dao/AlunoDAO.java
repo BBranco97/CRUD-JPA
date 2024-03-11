@@ -14,4 +14,5 @@ public class AlunoDAO {
         public void cadastrar(Aluno aluno) {
             this.em.persist(aluno);
         }
+
 }

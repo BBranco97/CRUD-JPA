@@ -15,7 +15,7 @@ public class CadastroAluno {
 
         SpringApplication.run(Aluno.class, args);
 
-        // Criando um objeto da Classe Produto:
+        // Criando um objeto da Classe Aluno:
         Aluno a1 = new Aluno();
         a1.setNome("Amanda");
         a1.setEmail("amanda@gmail.com");
