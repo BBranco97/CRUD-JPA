@@ -23,6 +23,13 @@ public class CadastroAluno {
         a1.setNota1(new BigDecimal(6.0));
         a1.setNota2(new BigDecimal(7.0));
         a1.setNota3(new BigDecimal(8.0));
+        Aluno a2 = new Aluno();
+        a1.setNome("Arnaldo");
+        a1.setEmail("arnaldo@gmail.com");
+        a1.setRa("2");
+        a1.setNota1(new BigDecimal(9.0));
+        a1.setNota2(new BigDecimal(2.0));
+        a1.setNota3(new BigDecimal(10.0));
 
 
         // Criando uma factory de EntityManager:
@@ -36,8 +43,13 @@ public class CadastroAluno {
         em.getTransaction().begin();
         // Gravando o objeto no banco de dados:
         dao.cadastrar(a1);
+        // Excluindo um objeto no banco de dados:
+        dao.excluir(a2);
         // "Comitando" a transação:
         em.getTransaction().commit();
+       // Imprime aluno
+        System.out.println(dao.buscar(1));
+        System.out.println(dao.buscar(2));
         // Fechando este EntityManager, já que não precisaremos mais dele:
         em.close();
 
