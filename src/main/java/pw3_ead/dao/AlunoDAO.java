@@ -21,4 +21,5 @@ public class AlunoDAO {
         public Aluno buscar(long id){
                 return this.em.find(Aluno.class,id);
         }
+
 }
