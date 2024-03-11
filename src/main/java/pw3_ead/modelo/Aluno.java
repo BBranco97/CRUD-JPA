@@ -22,9 +22,6 @@ public class Aluno {
     @ManyToOne
     private Situacao status;
     
-    
-    public Aluno() {
-    }
 
     public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3) {
         this.nome = nome;
@@ -33,7 +30,10 @@ public class Aluno {
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
+        this.setMedia();
+        this.setStatus();
     }
+
 
     public Aluno() {
 
@@ -42,7 +42,6 @@ public class Aluno {
     public Long getId() {
         return id;
     }
-
 
     public String getNome() {
         return nome;
@@ -92,6 +91,28 @@ public class Aluno {
         this.nota3 = nota3;
     }
 
+    public BigDecimal getMedia() {
+        return media;
+    }
+
+    public void setMedia(){
+        BigDecimal soma = nota1.add(nota2).add(nota3);
+        BigDecimal quantidade = new BigDecimal("3");
+        BigDecimal media = soma.divide(quantidade, 2, BigDecimal.ROUND_HALF_UP); // Duas casas decimais
+        this.media = media;
+    }
+
+    private void setStatus() {
+        String situacao;
+        if (media.compareTo(new BigDecimal("4")) < 0) {
+            this.status = new Situacao("REPROVADO");
+        } else if (media.compareTo(new BigDecimal("6")) < 0) {
+            this.status = new Situacao("RECUPERAÇÃO");
+        } else {
+            this.status = new Situacao("APROVADO");
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder SB = new StringBuilder();
@@ -104,22 +125,10 @@ public class Aluno {
         SB.append("Notas: ");
         SB.append(nota1).append(" - ").append(nota2).append(" - ").append(nota3);
         SB.append("\n");
-        double media = Math.round((nota1.doubleValue() + nota2.doubleValue() + nota3.doubleValue()) / 3);
         SB.append("Media: ").append(media);
         SB.append("\n");
-        SB.append("Situação: ");
-        if(media >= 6) SB.append("Aprovado");
-        else if(media < 4) SB.append("Reprovado");
-        else SB.append("Recuperação");
+        SB.append("Situação: ").append(status.getNome());
 
         return SB.toString();
-
-
-
-
-
-
-
-
     }
 }

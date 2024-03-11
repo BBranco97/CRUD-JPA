@@ -13,6 +13,7 @@ public class Situacao {
     private Long id;
     private String nome;
 
+
     public Situacao() {
     }
 
@@ -24,9 +25,6 @@ public class Situacao {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

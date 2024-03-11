@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import org.springframework.boot.SpringApplication;
 import pw3_ead.dao.AlunoDAO;
 import pw3_ead.modelo.Aluno;
+import pw3_ead.modelo.Situacao;
 import pw3_ead.util.JPAUtil;
 
 import java.math.BigDecimal;
@@ -15,7 +16,12 @@ public class CadastroAluno {
 
         SpringApplication.run(Aluno.class, args);
 
-        // Criando um objeto da Classe Aluno:
+        //Criando os objetos da classe Situacao
+        Situacao reprovado = new Situacao("Reprovado");
+        Situacao recuperacao = new Situacao("Recuperação");
+        Situacao aprovado = new Situacao("Aprovado");
+
+        // Criando objetos da Classe Aluno:
         Aluno a1 = new Aluno();
         a1.setNome("Amanda");
         a1.setEmail("amanda@gmail.com");
@@ -23,6 +29,8 @@ public class CadastroAluno {
         a1.setNota1(new BigDecimal(6.0));
         a1.setNota2(new BigDecimal(7.0));
         a1.setNota3(new BigDecimal(8.0));
+
+
         Aluno a2 = new Aluno();
         a1.setNome("Arnaldo");
         a1.setEmail("arnaldo@gmail.com");
@@ -30,7 +38,6 @@ public class CadastroAluno {
         a1.setNota1(new BigDecimal(9.0));
         a1.setNota2(new BigDecimal(2.0));
         a1.setNota3(new BigDecimal(10.0));
-
 
         // Criando uma factory de EntityManager:
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("cadastro_alunos");
