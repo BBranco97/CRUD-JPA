@@ -29,6 +29,10 @@ public class Aluno {
         this.nota3 = nota3;
     }
 
+    public Aluno() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -82,5 +86,34 @@ public class Aluno {
         this.nota3 = nota3;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder SB = new StringBuilder();
+        SB.append("Nome: ").append(nome);
+        SB.append("\n");
+        SB.append("Email: ").append(email);
+        SB.append("\n");
+        SB.append("RA: ").append(ra);
+        SB.append("\n");
+        SB.append("Notas: ");
+        SB.append(nota1).append(" - ").append(nota2).append(" - ").append(nota3);
+        SB.append("\n");
+        double media = Math.round((nota1.doubleValue() + nota2.doubleValue() + nota3.doubleValue()) / 3);
+        SB.append("Media: ").append(media);
+        SB.append("\n");
+        SB.append("Situação: ");
+        if(media >= 6) SB.append("Aprovado");
+        else if(media < 4) SB.append("Reprovado");
+        else SB.append("Recuperação");
 
+        return SB.toString();
+
+
+
+
+
+
+
+
+    }
 }

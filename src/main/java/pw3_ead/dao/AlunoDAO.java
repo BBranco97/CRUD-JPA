@@ -14,4 +14,11 @@ public class AlunoDAO {
         public void cadastrar(Aluno aluno) {
             this.em.persist(aluno);
         }
+        // Método para Excluir um produto no BD:
+        public void excluir(Aluno aluno){
+                this.em.remove(aluno);
+        }
+        public Aluno buscar(long id){
+                return this.em.find(Aluno.class,id);
+        }
 }
