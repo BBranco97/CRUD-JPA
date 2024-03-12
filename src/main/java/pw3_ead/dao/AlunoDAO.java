@@ -24,6 +24,22 @@ public class AlunoDAO {
                         .getResultList();
         }
 
+        public boolean existeRA(String ra) {
+                String jpql = "SELECT COUNT(a) FROM Aluno a WHERE a.ra = :ra";
+                Long count = em.createQuery(jpql, Long.class)
+                        .setParameter("ra", ra)
+                        .getSingleResult();
+                return count > 0;
+        }
+
+        public boolean existeNome (String nome){
+                String jpql = "SELECT COUNT(a) FROM Aluno a WHERE a.nome = :nome";
+                Long count = em.createQuery(jpql, Long.class)
+                        .setParameter("nome", nome)
+                        .getSingleResult();
+                return count > 0;
+        }
+
         public Aluno buscarUmPorNome(String nome){
                 String jpql = "SELECT a FROM Aluno a WHERE a.nome =:n";
                 return em.createQuery(jpql, Aluno.class).setParameter("n", nome).getSingleResult();

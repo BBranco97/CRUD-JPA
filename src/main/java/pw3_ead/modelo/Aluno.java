@@ -13,6 +13,7 @@ public class Aluno {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(unique = true)
     private String ra;
     private String email;
     private BigDecimal nota1;
