@@ -47,6 +47,9 @@ public class Menu {
         //finalizando a transação
         em.getTransaction().commit();
         */
+        populaTabela(situacaoDAO, em, alunoDAO);
+
+        List<Aluno> alunos;
 
         int opcao;
         do {
@@ -217,5 +220,38 @@ public class Menu {
                     System.out.println("Opção inválida");
             }
         } while (opcao != 6);
+    }
+
+    private static void populaTabela(SituacaoDAO situacaoDAO, EntityManager em, AlunoDAO alunoDAO) {
+        BigDecimal notas = BigDecimal.valueOf(18);
+        BigDecimal media = notas.divide(BigDecimal.valueOf(3), 2, RoundingMode.HALF_UP);
+        Aluno a1  = new Aluno("jose",
+                "SC34109X",
+                "jose@gmail.com",
+                BigDecimal.valueOf(6),
+                BigDecimal.valueOf(6),
+                BigDecimal.valueOf(6),
+                media, situacaoDAO.getSituacao(media));
+
+        notas = BigDecimal.valueOf(28);
+        media = notas.divide(BigDecimal.valueOf(3), 2, RoundingMode.HALF_UP);
+        Aluno a2 = new Aluno("josenildo",
+                "SC34111X",
+                "josenildo@gmail.com",
+                BigDecimal.valueOf(9),
+                BigDecimal.valueOf(10),
+                BigDecimal.valueOf(9),
+                media, situacaoDAO.getSituacao(media));
+
+        try {
+            em.getTransaction().begin();
+            alunoDAO.cadastrar(a1);
+            alunoDAO.cadastrar(a2);
+
+            em.getTransaction().commit();
+            System.out.println("\nCadastrado com sucesso\n");
+        } catch (PersistenceException e) {
+            System.out.println("\nErro ao cadastrar o aluno\n");
+        }
     }
 }
