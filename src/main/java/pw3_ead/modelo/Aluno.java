@@ -13,12 +13,22 @@ public class Aluno {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(unique = true)
     private String ra;
     private String email;
     private BigDecimal nota1;
     private BigDecimal nota2;
     private BigDecimal nota3;
     private BigDecimal media;
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
+
     @ManyToOne
     private Situacao situacao;
 
