@@ -125,11 +125,14 @@ public class Menu {
                     if(alunosEncontrados.isEmpty()){
                         System.out.println("\n Aluno não encontrado\n");
                     }
-                    for(Aluno aluno2 : alunosEncontrados) {
-                        System.out.println("\nAlunos encontrados\n");
-                        System.out.println(aluno2);
-                        System.out.println("-----------------------");
+                    else {
+                        for (Aluno aluno2 : alunosEncontrados) {
+                            System.out.println("\nAlunos encontrados\n");
+                            System.out.println(aluno2);
+                            System.out.println("-----------------------");
+                        }
                     }
+
                     break;
 
                 case 5:
@@ -140,13 +143,15 @@ public class Menu {
                     if(todos.isEmpty()){
                         System.out.println("\nNenhum aluno encontrado\n");
                     }
-                    for(Aluno aluno2 : todos) {
-                        System.out.println("-----------------------");
-                        System.out.println(aluno2);
-                        System.out.println("\nMédia: ");
-                        System.out.println(aluno2.getMedia());
-                        System.out.println("\nSituação: ");
-                        System.out.println(situacaoDAO.getSituacao(aluno2.getMedia()).getNome());
+                    else {
+                        for (Aluno aluno2 : todos) {
+                            System.out.println("-----------------------");
+                            System.out.println(aluno2);
+                            System.out.println("\nMédia: ");
+                            System.out.println(aluno2.getMedia());
+                            System.out.println("\nSituação: ");
+                            System.out.println(situacaoDAO.getSituacao(aluno2.getMedia()).getNome());
+                        }
                     }
 
                     break;
