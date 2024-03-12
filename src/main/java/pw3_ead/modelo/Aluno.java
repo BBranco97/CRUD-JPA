@@ -20,19 +20,18 @@ public class Aluno {
     private BigDecimal nota3;
     private BigDecimal media;
     @ManyToOne
-    private Situacao status;
-    
-    
-    public Aluno() {
-    }
+    private Situacao situacao;
 
-    public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3) {
+
+    public Aluno(String nome, String ra, String email, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3, BigDecimal media, Situacao situacao) {
         this.nome = nome;
         this.ra = ra;
         this.email = email;
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
+        this.media = media;
+        this.situacao = situacao;
     }
 
     public Aluno() {
@@ -42,7 +41,6 @@ public class Aluno {
     public Long getId() {
         return id;
     }
-
 
     public String getNome() {
         return nome;
@@ -92,6 +90,13 @@ public class Aluno {
         this.nota3 = nota3;
     }
 
+    public BigDecimal getMedia() {
+        return media;
+    }
+
+    public void setMedia(BigDecimal media){ this.media = media;}
+
+
     @Override
     public String toString() {
         StringBuilder SB = new StringBuilder();
@@ -104,22 +109,6 @@ public class Aluno {
         SB.append("Notas: ");
         SB.append(nota1).append(" - ").append(nota2).append(" - ").append(nota3);
         SB.append("\n");
-        double media = Math.round((nota1.doubleValue() + nota2.doubleValue() + nota3.doubleValue()) / 3);
-        SB.append("Media: ").append(media);
-        SB.append("\n");
-        SB.append("Situação: ");
-        if(media >= 6) SB.append("Aprovado");
-        else if(media < 4) SB.append("Reprovado");
-        else SB.append("Recuperação");
-
         return SB.toString();
-
-
-
-
-
-
-
-
     }
 }
