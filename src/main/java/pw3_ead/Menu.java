@@ -45,8 +45,8 @@ public class Menu {
         situacaoDAO.cadastrar(aprovado);
 
         //finalizando a transação
-        em.getTransaction().commit();
-        */
+        em.getTransaction().commit();*/
+
 
         int opcao;
         do {
