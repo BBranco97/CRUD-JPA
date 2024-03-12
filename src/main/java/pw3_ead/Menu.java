@@ -150,7 +150,8 @@ public class Menu {
                             System.out.println("\nMédia: ");
                             System.out.println(aluno2.getMedia());
                             System.out.println("\nSituação: ");
-                            System.out.println(situacaoDAO.getSituacao(aluno2.getMedia()).getNome());
+                            System.out.println(aluno2.getSituacao().getNome());
+
                         }
                     }
 

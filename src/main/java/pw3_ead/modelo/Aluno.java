@@ -19,6 +19,15 @@ public class Aluno {
     private BigDecimal nota2;
     private BigDecimal nota3;
     private BigDecimal media;
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
+
     @ManyToOne
     private Situacao situacao;
 
